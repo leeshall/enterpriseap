@@ -19,9 +19,11 @@ config.active_record.migration_error = :page_load
 # This option may cause significant delays in view rendering with a large
 # number of complex assets.
 config.assets.debug = true
+  
   # add for devise
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  config.action_mailer.delivery_method = :stmp
+ # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   
   
