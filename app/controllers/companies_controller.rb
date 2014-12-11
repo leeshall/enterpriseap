@@ -1,12 +1,18 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+ respond_to :html
 
   def index
     @companies = Company.all
-    respond_with(@companies)
+    respond_to do |format|
+      format.html
+      format.csv { render text: @companies.to_csv }
+    end  
   end
+
+
+
 
   def show
     respond_with(@company)
@@ -41,8 +47,8 @@ class CompaniesController < ApplicationController
     Company.import(params[:file])
     redirect_to companies_path, notice: "Companies Added Successfully"
   end
- 
   
+ 
   private
     def set_company
       @company = Company.find(params[:id])
@@ -52,4 +58,3 @@ class CompaniesController < ApplicationController
       params.require(:company).permit(:name, :manager, :status, :terms)
     end
 end
-

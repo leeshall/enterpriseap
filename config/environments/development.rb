@@ -33,4 +33,7 @@ config.assets.debug = true
 config.assets.raise_runtime_errors = true
 # Raises error for missing translations
 # config.action_view.raise_on_missing_translations = true
+  
+  # this enables better_errors page to be accessible by anyone on the internet. It should not be used in production OR PERHAPS on FOR SALE PRODUCTS  
+BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
 end
